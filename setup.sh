@@ -11,6 +11,8 @@ echo "Enter your Cloudflare API Token:"
 read CF_TOKEN
 echo "Enter your Cloudflare Zone ID:"
 read CF_ZONE
+echo "Enter your Nginx error log path (e.g. /var/log/nginx/error.log or /home/*/logs/error.log):"
+read LOG_PATH
 
 echo "Installing Fail2Ban from package manager..."
 apt update && apt install -y fail2ban curl jq
@@ -56,13 +58,13 @@ banaction_allports = cloudflare-token[cftoken="$CF_TOKEN", cfzone="$CF_ZONE"]
 [nginx-limit-req]
 enabled = true
 port    = http,https
-logpath = /home/mrj0b/*/logs/error.log
+logpath = $LOG_PATH
 filter  = nginx-limit-req
 
 [nginx-botsearch]
 enabled = true
 port    = http,https
-logpath = /home/mrj0b/*/logs/error.log
+logpath = $LOG_PATH
 maxretry = 2
 filter  = nginx-botsearch
 EOF

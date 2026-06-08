@@ -51,6 +51,9 @@ You need an API Token with `Zone -> Firewall Services -> Edit` permissions.
 **3. Cloudflare Zone ID**
 You need the alphanumeric Zone ID from your Cloudflare dashboard overview page.
 
+**4. Custom Nginx Log Paths (If Applicable)**
+If you use a custom Nginx log path (e.g., `/home/username/logs/error.log` instead of `/var/log/nginx/error.log`), the script will ask you for this during setup so Fail2Ban knows where to monitor for attacks.
+
 ### Installation
 SSH into your server and run:
 
@@ -60,4 +63,4 @@ chmod +x setup.sh
 sudo ./setup.sh
 ```
 
-The script will prompt you for your API Token and Zone ID, and automatically apply the configurations.
+The script will prompt you for your API Token, Zone ID, and Log Path, and automatically apply the configurations.
